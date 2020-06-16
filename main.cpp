@@ -55,10 +55,6 @@ int main() {
   int error = 0;
   printf("Restoring blob and secret datas.\r\n");
 
-  printf("Mounting the filesystem on \"/sd\". ");
-  error = fs.mount(&bd);
-  return_error(error);
-
   printf("Normal.blob :\n");
   if (File_Copy("/sd/ecdsa/Normal.blob", "/sd/data/Normal.blob") != 0)
     return -1;
@@ -100,8 +96,8 @@ int main() {
 
   printf(" done.\r\n");
 
-  printf("Opening root directory.");
-  DIR* dir = opendir("/sd/data/");
+  printf("Opening root data directory.");
+  DIR* dir = opendir("/sd/data");
   errno_error(dir);
 
   struct dirent* de;
